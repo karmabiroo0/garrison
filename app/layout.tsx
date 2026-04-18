@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { Inter, Space_Grotesk } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
+import { Suspense } from 'react';
 
 const inter = Inter({ 
   subsets: ["latin"],
@@ -39,7 +40,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable}`}>
       <body className="font-sans antialiased bg-background text-foreground">
+      <Suspense>
         {children}
+        </Suspense>
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>
