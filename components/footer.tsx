@@ -34,13 +34,10 @@ export function Footer() {
           {/* Company Info */}
           <div className="lg:col-span-2">
             <Link href="/" className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 bg-accent rounded-lg flex items-center justify-center">
-                <Truck className="w-7 h-7 text-white" />
+              <div className="flex items-center justify-center">
+                <img className="w-full h-15 text-primary-foreground" src="/gar2.png" />
               </div>
-              <div>
-                <span className="text-xl font-bold text-white tracking-tight">Garrison Logistics</span>
-                <span className="block text-xs text-white/70">Freight Brokerage Solutions</span>
-              </div>
+              
             </Link>
             <p className="text-white/70 mb-6 max-w-sm">
               Connecting shippers with reliable carriers across the nation. Your trusted freight brokerage partner for all transportation needs.

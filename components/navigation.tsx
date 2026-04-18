@@ -23,13 +23,10 @@ export function Navigation() {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3">
-            <div className="w-12 h-12 bg-accent rounded-lg flex items-center justify-center">
-              <Truck className="w-7 h-7 text-white" />
+            <div className="flex items-center justify-center">
+             <img className="w-full h-15 text-primary-foreground" src="/gar2.png" />
             </div>
-            <div>
-              <span className="text-xl font-bold text-white tracking-tight">Garrison Logistics</span>
-              <span className="hidden sm:block text-xs text-white/70">Freight Brokerage Solutions</span>
-            </div>
+            
           </Link>
 
           {/* Desktop Navigation */}
