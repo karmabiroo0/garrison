@@ -11,7 +11,7 @@ export type Load = {
 }
 
 export const loadsData: Load[] = [
-  { id: "GL-1001", pickupCity: "Dallas", pickupState: "TX", dropoffCity: "Atlanta", dropoffState: "GA", equipmentType: "Dry Van", weight: 38000, loadType: "Single Route", freightType: "Dock-to-Dock" },
+  { id: "GL-1001", pickupCity: "Lakewood", pickupState: "OH", dropoffCity: "Richmond", dropoffState: "IN", equipmentType: "Sprinter Van", weight: 3800, loadType: "Single Route", freightType: "Dock-to-Dock" },
   { id: "GL-1002", pickupCity: "Los Angeles", pickupState: "CA", dropoffCity: "Phoenix", dropoffState: "AZ", equipmentType: "Reefer", weight: 42000, loadType: "Dedicated Route", freightType: "Amazon" },
   { id: "GL-1003", pickupCity: "Chicago", pickupState: "IL", dropoffCity: "Detroit", dropoffState: "MI", equipmentType: "Dry Van", weight: 35000, loadType: "Single Route", freightType: "General" },
   { id: "GL-1004", pickupCity: "Houston", pickupState: "TX", dropoffCity: "New Orleans", dropoffState: "LA", equipmentType: "Flatbed", weight: 44000, loadType: "Single Route", freightType: "Dock-to-Dock" },
