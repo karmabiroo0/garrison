@@ -109,8 +109,8 @@ export function ContactCTA() {
             </motion.div>
             <div className="text-left">
               <div className="text-sm text-white/70">Call us anytime</div>
-              <a href="tel:123-456-7890" className="text-2xl font-bold hover:text-accent transition-colors">
-                123-456-7890
+              <a href="tel:(833) 440-0200" className="text-2xl font-bold hover:text-accent transition-colors">
+                (833) 440-0200
               </a>
             </div>
           </motion.div>
