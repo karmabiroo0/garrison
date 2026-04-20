@@ -148,7 +148,7 @@ export default function ContactPage() {
               
               <div className="space-y-6 mb-8">
                 {[
-                  { icon: Phone, label: "Phone", value: "(833) 440-0200", href: "tel:(833) 440-0200", accent: false },
+                  { icon: Phone, label: "Phone", value: "123-456-7890", href: "tel:123-456-7890", accent: false },
                   { icon: Mail, label: "Email", value: "quotes@garrisonlogistics.com", href: "mailto:quotes@garrisonlogistics.com", accent: false },
                   { icon: MapPin, label: "Location", value: "Vinemont, AL 35179, USA", href: null, accent: false },
                   { icon: Clock, label: "Hours", value: "24/7 Support", href: null, accent: true },
@@ -193,7 +193,7 @@ export default function ContactPage() {
                   Our dispatch team is available around the clock for urgent freight needs.
                 </p>
                 <motion.a
-                  href="tel:(833) 440-0200"
+                  href="tel:123-456-7890"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className="inline-flex items-center gap-2 px-4 py-2 bg-accent rounded-lg font-semibold hover:bg-accent/90 transition-colors"
