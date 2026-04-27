@@ -4,12 +4,12 @@ import { useState, useCallback } from "react"
 import { motion } from "framer-motion"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
-import { 
-  Upload, 
-  FileText, 
-  CheckCircle, 
-  Download, 
-  X, 
+import {
+  Upload,
+  FileText,
+  CheckCircle,
+  Download,
+  X,
   Shield,
   Truck,
   DollarSign,
@@ -76,11 +76,41 @@ export default function CarrierRegistrationPage() {
     e.preventDefault()
     setIsSubmitting(true)
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 2000))
+    try {
+      const formDataToSend = new FormData()
 
-    setIsSubmitting(false)
-    setIsSubmitted(true)
+      // text fields
+      formDataToSend.append("companyName", formData.companyName)
+      formDataToSend.append("mcNumber", formData.mcNumber)
+      formDataToSend.append("dotNumber", formData.dotNumber)
+      formDataToSend.append("contactName", formData.contactName)
+      formDataToSend.append("phone", formData.phone)
+      formDataToSend.append("email", formData.email)
+      formDataToSend.append("insuranceProvider", formData.insuranceProvider)
+
+      // files
+      formDataToSend.append("w9", files.w9.file as File)
+      formDataToSend.append("insurance", files.insurance.file as File)
+      formDataToSend.append("authority", files.authority.file as File)
+      formDataToSend.append("agreement", files.agreement.file as File)
+
+      const response = await fetch("/api/carrier", {
+        method: "POST",
+        body: formDataToSend,
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.error || "Submission failed")
+      }
+
+      setIsSubmitted(true)
+    } catch (error) {
+      console.error(error)
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -318,8 +348,10 @@ export default function CarrierRegistrationPage() {
                       Please download, review, sign, and upload the carrier agreement document.
                     </p>
                     <a
-                      href="/documents/carrier-agreement.pdf"
-                      download
+                      href="/file/contract.pdf"
+                      download="Garrison-Logistics-Onboarding.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 px-4 py-2 bg-white border border-border rounded-lg text-sm font-medium text-foreground hover:border-primary transition-colors"
                     >
                       <Download className="w-4 h-4" />
@@ -415,13 +447,12 @@ function FileUploadField({
       onDragOver={handleDragOver}
       onDragLeave={handleDragLeave}
       onDrop={handleDrop}
-      className={`relative border-2 border-dashed rounded-xl p-4 transition-colors ${
-        isDragging
+      className={`relative border-2 border-dashed rounded-xl p-4 transition-colors ${isDragging
           ? "border-primary bg-primary/5"
           : file
-          ? "border-green-500 bg-green-50"
-          : "border-border hover:border-primary/50"
-      }`}
+            ? "border-green-500 bg-green-50"
+            : "border-border hover:border-primary/50"
+        }`}
     >
       <input
         type="file"
@@ -430,9 +461,8 @@ function FileUploadField({
         className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
       />
       <div className="flex items-center gap-3">
-        <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
-          file ? "bg-green-500" : "bg-muted"
-        }`}>
+        <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${file ? "bg-green-500" : "bg-muted"
+          }`}>
           {file ? (
             <CheckCircle className="w-5 h-5 text-white" />
           ) : (

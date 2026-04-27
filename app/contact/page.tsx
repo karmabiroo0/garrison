@@ -13,8 +13,12 @@ import {
   Clock, 
   Send, 
   CheckCircle,
-  ChevronDown
+  ChevronDown,
+  AlertCircle
 } from "lucide-react"
+
+
+type FormStatus = "idle" | "submitting" | "success" | "error"
 
 const faqs = [
   {
@@ -66,6 +70,8 @@ export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [openFaq, setOpenFaq] = useState<number | null>(null)
+  const [status, setStatus] = useState<FormStatus>("idle")
+const [errorMessage, setErrorMessage] = useState("")
 
   // Parallax for hero
   const heroRef = useRef(null)
@@ -82,13 +88,51 @@ export default function ContactPage() {
     }))
   }
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-    await new Promise((resolve) => setTimeout(resolve, 1500))
-    setIsSubmitting(false)
-    setIsSubmitted(true)
+
+
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault()
+  setStatus("submitting")
+  setErrorMessage("")
+
+  try {
+    const response = await fetch("/api/quote", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    })
+
+    const data = await response.json()
+
+    if (!response.ok) {
+      throw new Error(data.error || "Failed to send quote request")
+    }
+
+    setStatus("success")
+
+    setFormData({
+      name: "",
+      company: "",
+      email: "",
+      phone: "",
+      shipmentType: "",
+      origin: "",
+      destination: "",
+      message: "",
+    })
+
+    setTimeout(() => setStatus("idle"), 5000)
+  } catch (error) {
+    setStatus("error")
+    setErrorMessage(
+      error instanceof Error ? error.message : "Something went wrong"
+    )
+
+    setTimeout(() => setStatus("idle"), 5000)
   }
+}
 
   return (
     <main>
@@ -408,6 +452,23 @@ export default function ContactPage() {
                         />
                       </motion.div>
                     </div>
+
+
+
+                     {/* Status Messages */}
+          {status === "success" && (
+            <div className="flex items-center gap-3 p-4 bg-green-500/10 border border-green-500/30 rounded-lg">
+              <CheckCircle className="w-5 h-5 text-green-500 shrink-0" />
+              <p className="text-green-500 font-medium">Thank you! Your message has been sent successfully. We&apos;ll get back to you shortly.</p>
+            </div>
+          )}
+
+          {status === "error" && (
+            <div className="flex items-center gap-3 p-4 bg-red-500/10 border border-red-500/30 rounded-lg">
+              <AlertCircle className="w-5 h-5 text-red-500 shrink-0" />
+              <p className="text-red-500 font-medium">{errorMessage || "Something went wrong. Please try again."}</p>
+            </div>
+          )}
 
                     <motion.div
                       custom={8}
