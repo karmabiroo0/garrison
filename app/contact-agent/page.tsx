@@ -81,8 +81,8 @@ export default function ContactAgentPage() {
                   </div>
                   <div>
                     <div className="text-sm text-muted-foreground">Call Us Anytime</div>
-                    <a href="tel:123-456-7890" className="text-xl font-bold text-foreground hover:text-primary transition-colors">
-                      123-456-7890
+                    <a href="tel:(833) 440-0200" className="text-xl font-bold text-foreground hover:text-primary transition-colors">
+                      (833) 440-0200
                     </a>
                     <p className="text-sm text-muted-foreground mt-1">24/7 Dispatch Support</p>
                   </div>
@@ -115,7 +115,7 @@ export default function ContactAgentPage() {
 
               <div className="mt-10">
                 <a
-                  href="tel:123-456-7890"
+                  href="tel:(833) 440-0200"
                   className="inline-flex items-center gap-2 px-8 py-4 bg-accent text-white font-semibold rounded-lg hover:bg-accent/90 transition-colors"
                 >
                   <Phone className="w-5 h-5" />
