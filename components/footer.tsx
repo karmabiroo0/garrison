@@ -108,9 +108,9 @@ export function Footer() {
              &copy; 2005 Garrison Logistics Inc. All rights reserved.
             </div>
             <div className="flex items-center gap-4 text-white/60 text-sm">
-              <span>DOT# 664167</span>
+              <span></span>
               <span className="text-white/30">|</span>
-              <span>MC# 310818</span>
+              <span></span>
             </div>
           </div>
           <p className="text-white/40 text-xs text-center md:text-left mt-4">
