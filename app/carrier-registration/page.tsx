@@ -348,7 +348,7 @@ export default function CarrierRegistrationPage() {
                       Please download, review, sign, and upload the carrier agreement document.
                     </p>
                     <a
-                      href="/file/contract.pdf"
+                      href="/file/Garrison-Logistics.pdf"
                       download="Garrison-Logistics-Onboarding.pdf"
                       target="_blank"
                       rel="noopener noreferrer"
